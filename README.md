@@ -306,7 +306,6 @@ node verify-gemini.mjs
 ├── .gitignore                    # Production-grade git exclusion rules
 ├── ARCHITECTURE_AND_WORKFLOW.md  # Detailed architecture & sequence diagrams
 ├── WORKFLOW_WIREFRAME_DIAGRAM.md # Visual ASCII wireframe screen states
-├── PRESENTATION_SPEECH_8_MINUTES.md # 8-minute executive presentation speech
 └── package.json                  # Dependencies and execution scripts
 ```
 
