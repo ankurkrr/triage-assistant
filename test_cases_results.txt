@@ -1,0 +1,666 @@
+================================================================================
+AI REQUEST TRIAGE ASSISTANT — TEST EXECUTION RESULTS (TESTS 26 - 80)
+Executed at: 2026-09-15T12:37:35.874Z
+Total Cases: 55
+================================================================================
+
+TEST 26
+- Request Query: "Our customer wants to change the billing address on their account."
+- Executive Summary: A customer is requesting to update the billing address on their account.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Account maintenance requests like updating a billing address are standard operational tasks that do not cause immediate system outages.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out to update your billing address. We have received your request and our Finance team will review the details to update your account shortly. If you can provide the new billing address and any necessary account details, that will help us process your request faster."
+- Response Latency: 1987ms
+--------------------------------------------------------------------------------
+
+TEST 27
+- Request Query: "The payment gateway is rejecting every transaction since this morning."
+- Executive Summary: The payment gateway is rejecting all transactions since this morning.
+- Category: Technical
+- Priority: Urgent
+- Priority Reason: All transactions are currently failing, completely halting payment processing.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding the payment gateway rejecting transactions since this morning. Our engineering team is looking into the issue and we will provide an update as soon as possible."
+- Response Latency: 1655ms
+--------------------------------------------------------------------------------
+
+TEST 28
+- Request Query: "A user forgot their password and cannot complete the reset process."
+- Executive Summary: A user is unable to complete the password reset process after forgetting their password.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The user is blocked from accessing their account due to a password reset failure.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out regarding your password reset issue. We have received your request and our technical team will review the details to help you regain access to your account."
+- Response Latency: 1652ms
+--------------------------------------------------------------------------------
+
+TEST 29
+- Request Query: "We need a quotation for 200 enterprise licenses."
+- Executive Summary: The customer is requesting a quotation for 200 enterprise licenses.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request involves a potential volume sale of 200 enterprise licenses, which represents a standard sales inquiry.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in our enterprise licenses. We have received your request for a quotation for 200 licenses and our Sales Team will review your requirements and follow up with you shortly."
+- Response Latency: 1560ms
+--------------------------------------------------------------------------------
+
+TEST 30
+- Request Query: "The dashboard takes more than 30 seconds to load."
+- Executive Summary: The user reports that the dashboard takes more than 30 seconds to load.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: Performance issue impacting usability without complete system outage or data loss reported.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding the slow dashboard loading time of over 30 seconds. Our engineering team will investigate this performance issue and follow up with you as soon as more information is available."
+- Response Latency: 1471ms
+--------------------------------------------------------------------------------
+
+TEST 31
+- Request Query: "Please explain the differences between your Basic and Enterprise plans."
+- Executive Summary: The user is requesting an explanation of the differences between the Basic and Enterprise plans.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Inquiry is a standard pre-sales product comparison without reported system outages or critical blockers.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in our plans. A member of our Sales Team will review your inquiry and provide a detailed comparison between our Basic and Enterprise plans."
+- Response Latency: 1350ms
+--------------------------------------------------------------------------------
+
+TEST 32
+- Request Query: "We were charged for a subscription after cancelling it."
+- Executive Summary: The customer reports being charged for a subscription after having previously cancelled it.
+- Category: Billing
+- Priority: High
+- Priority Reason: The customer experienced an unexpected charge following a cancellation, requiring immediate financial review.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out regarding the unexpected charge on your account after cancellation. We are reviewing your billing details and will investigate this transaction, and we will follow up with you shortly regarding the next steps."
+- Response Latency: 1457ms
+--------------------------------------------------------------------------------
+
+TEST 33
+- Request Query: "Our team needs help understanding how to configure the API."
+- Executive Summary: The user is requesting assistance with understanding how to configure the API.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The request involves technical configuration guidance for the API without indicating a complete outage or critical operational failure.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello. Thank you for reaching out to us. We received your request for help with configuring the API. A member of our engineering team will review your inquiry and follow up with you soon to assist you with the setup process."
+- Response Latency: 1418ms
+--------------------------------------------------------------------------------
+
+TEST 34
+- Request Query: "The application is showing a blank screen after the latest deployment."
+- Executive Summary: The application is displaying a blank screen following the most recent deployment.
+- Category: Technical
+- Priority: High
+- Priority Reason: A blank screen after deployment indicates a critical system availability issue affecting application usability.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reporting this issue. We have received your report regarding the blank screen following the latest deployment, and our engineering team is investigating. We will provide updates as more information becomes available."
+- Response Latency: 1354ms
+--------------------------------------------------------------------------------
+
+TEST 35
+- Request Query: "A customer is requesting a refund for an accidental purchase."
+- Executive Summary: A customer is requesting a refund for an accidental purchase.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: The request involves financial transactions and a refund, which requires standard billing review.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for contacting us. We have received your request regarding a refund for an accidental purchase, and our Finance team will review the transaction details and follow up with you regarding the next steps."
+- Response Latency: 1289ms
+--------------------------------------------------------------------------------
+
+TEST 36
+- Request Query: "We want to schedule a product demo for next week."
+- Executive Summary: The customer is requesting to schedule a product demo for next week.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Standard prospective customer request with a moderate timeline of next week.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in our product. We would be happy to schedule a product demo for you next week. Please let us know your preferred days and times so we can coordinate the details."
+- Response Latency: 1525ms
+--------------------------------------------------------------------------------
+
+TEST 37
+- Request Query: "The monthly invoice contains incorrect usage numbers."
+- Executive Summary: The customer reported that their monthly invoice contains incorrect usage numbers.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Incorrect billing details impact financial accuracy and require review.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for contacting us regarding your monthly invoice. We have received your report about the incorrect usage numbers and our Finance team will review your account details and follow up with you."
+- Response Latency: 1582ms
+--------------------------------------------------------------------------------
+
+TEST 38
+- Request Query: "Several employees cannot access the platform because their accounts are locked."
+- Executive Summary: Multiple employees are unable to access the platform due to locked accounts.
+- Category: Technical
+- Priority: High
+- Priority Reason: Multiple users are completely blocked from accessing the platform, impacting their work.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding the account lockouts affecting multiple employees. Our team is looking into the access issue and will follow up with next steps shortly."
+- Response Latency: 1690ms
+--------------------------------------------------------------------------------
+
+TEST 39
+- Request Query: "Can you provide documentation for integrating your service with Slack?"
+- Executive Summary: The user is requesting documentation for integrating the service with Slack.
+- Category: Technical
+- Priority: Low
+- Priority Reason: The request is a standard inquiry for integration documentation with no reported system outage or urgency indicators.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for contacting us. We have received your request for Slack integration documentation and will provide the relevant guides for your review shortly."
+- Response Latency: 1593ms
+--------------------------------------------------------------------------------
+
+TEST 40
+- Request Query: "We are interested in becoming a technology partner."
+- Executive Summary: An external party is expressing interest in establishing a technology partnership.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Inquiry represents a potential business growth opportunity requiring standard sales or partnership evaluation.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in becoming a technology partner. We have received your inquiry and a member of our team will review it and reach out to discuss potential next steps."
+- Response Latency: 1514ms
+--------------------------------------------------------------------------------
+
+TEST 41
+- Request Query: "The mobile application closes whenever we open the reports section."
+- Executive Summary: The mobile application crashes or closes unexpectedly when attempting to open the reports section.
+- Category: Technical
+- Priority: High
+- Priority Reason: Application crashes directly impede core functionality for the user.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out regarding the issue with the mobile application closing when opening the reports section. Our engineering team has been notified to investigate this technical behavior, and we will follow up with you as soon as we have more information or require further details."
+- Response Latency: 1513ms
+--------------------------------------------------------------------------------
+
+TEST 42
+- Request Query: "Our organization needs an urgent update to the company billing details."
+- Executive Summary: The customer is requesting an urgent update to their company billing details.
+- Category: Billing
+- Priority: Urgent
+- Priority Reason: The requester explicitly stated that the update to company billing details is urgent.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out to us regarding your billing details. We have received your urgent request and our Finance team will review the necessary updates. Could you please provide the specific billing details that need to be changed so we can proceed safely?"
+- Response Latency: 1355ms
+--------------------------------------------------------------------------------
+
+TEST 43
+- Request Query: "Please send information about your available enterprise security features."
+- Executive Summary: The user is requesting information regarding available enterprise security features.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request is a standard inquiry about enterprise features without indicating an active system outage or critical emergency.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in our enterprise security features. A member of our Sales Team will reach out to provide you with the requested information."
+- Response Latency: 1200ms
+--------------------------------------------------------------------------------
+
+TEST 44
+- Request Query: "The export file is missing several records."
+- Executive Summary: The user reports that the export file is missing several records.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: Data is missing from an export file, which impacts data integrity but does not represent a complete system outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding missing records in the export file. Our technical team will investigate this issue and we will follow up with you as soon as more information is available."
+- Response Latency: 1354ms
+--------------------------------------------------------------------------------
+
+TEST 45
+- Request Query: "We would like to discuss a joint marketing campaign."
+- Executive Summary: The requester wants to discuss a joint marketing campaign.
+- Category: Sales
+- Priority: Low
+- Priority Reason: The request is a general inquiry about a potential partnership without any stated time sensitivity or critical business disruption.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out regarding a potential joint marketing campaign. We have received your inquiry and a member of our team will contact you to discuss this further."
+- Response Latency: 1499ms
+--------------------------------------------------------------------------------
+
+TEST 46
+- Request Query: "The service is completely unavailable for all users in our organization."
+- Executive Summary: The user reports that the service is completely unavailable for all users within their organization.
+- Category: Technical
+- Priority: Urgent
+- Priority Reason: Complete service unavailability affecting all users in the organization.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello. We have received your report regarding the complete service unavailability for your organization. Our engineering team is looking into the issue, and we will follow up as soon as we have more information or require further clarification."
+- Response Latency: 1260ms
+--------------------------------------------------------------------------------
+
+TEST 47
+- Request Query: "A customer says their invoice was paid, but the account still shows an unpaid balance."
+- Executive Summary: A customer reports that their invoice shows as unpaid despite having already made the payment.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: The request involves a payment discrepancy affecting the customer's account status, requiring financial investigation.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out regarding your account balance. We are looking into the payment status of your invoice and will follow up with you shortly to resolve this discrepancy."
+- Response Latency: 1514ms
+--------------------------------------------------------------------------------
+
+TEST 48
+- Request Query: "We need help understanding the steps required to invite new team members."
+- Executive Summary: The user is requesting guidance and steps on how to invite new team members to the platform.
+- Category: Support
+- Priority: Low
+- Priority Reason: The request is for general informational assistance with no reported system outage or urgent financial impact.
+- Assigned Owner: Client Success
+- Draft Response:
+    "Hello, thank you for reaching out to us. We would be happy to help you understand the steps required to invite new team members. Could you please provide a bit more context on your current setup so we can guide you through the process?"
+- Response Latency: 1579ms
+--------------------------------------------------------------------------------
+
+TEST 49
+- Request Query: "The API returns a 500 error when we upload a CSV file."
+- Executive Summary: The user is experiencing a 500 internal server error when attempting to upload a CSV file via the API.
+- Category: Technical
+- Priority: High
+- Priority Reason: A 500 error on a core data upload function indicates a significant service disruption that blocks functionality.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding the 500 error during CSV file uploads via the API. Our engineering team is looking into this issue, and we will follow up with you as soon as we have more information or need further details."
+- Response Latency: 1707ms
+--------------------------------------------------------------------------------
+
+TEST 50
+- Request Query: "Can someone from your sales team contact us about a large-volume contract?"
+- Executive Summary: The requester is asking for a sales team representative to contact them regarding a large-volume contract.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request involves a potential large-volume contract which is a standard sales opportunity requiring follow-up.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out to us regarding a large-volume contract. A member of our Sales Team has received your request and will contact you soon to discuss your needs."
+- Response Latency: 1535ms
+--------------------------------------------------------------------------------
+
+TEST 51
+- Request Query: "The customer portal is displaying outdated account information."
+- Executive Summary: The customer portal is displaying outdated account information.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: Account data discrepancy in the portal affects user experience but does not indicate a total system outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out to inform us that the customer portal is displaying outdated account information. Our technical team has been notified to investigate the data sync issue, and we will follow up with you as soon as more information is available."
+- Response Latency: 1490ms
+--------------------------------------------------------------------------------
+
+TEST 52
+- Request Query: "We need to update the bank account used for subscription payments."
+- Executive Summary: The customer is requesting an update to the bank account information associated with their subscription payments.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Account update requests are important for ongoing subscription management but do not indicate an immediate service outage or emergency.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out regarding your subscription payments. We have received your request to update your bank account information and our finance team will follow up with you shortly regarding the next steps."
+- Response Latency: 1385ms
+--------------------------------------------------------------------------------
+
+TEST 53
+- Request Query: "Our users are receiving an error when downloading PDF invoices."
+- Executive Summary: Users are encountering an error when attempting to download PDF invoices.
+- Category: Technical
+- Priority: High
+- Priority Reason: The issue impacts core user functionality related to invoices.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out to report this issue with downloading PDF invoices. We are reviewing the error and will investigate the technical cause to provide an update soon."
+- Response Latency: 1315ms
+--------------------------------------------------------------------------------
+
+TEST 54
+- Request Query: "Please share the pricing for your API usage."
+- Executive Summary: The user is requesting pricing information for API usage.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Inquiry is a standard sales request for pricing information without reported outages or critical system failures.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for your interest in our API. We have received your request for pricing information and a member of our Sales Team will reach out to you shortly with the relevant details."
+- Response Latency: 1723ms
+--------------------------------------------------------------------------------
+
+TEST 55
+- Request Query: "The system is sending the same notification multiple times."
+- Executive Summary: The user reports an issue where the system is repeatedly sending duplicate notifications.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The issue involves system malfunction affecting normal notifications, but does not indicate a complete outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding duplicate system notifications and our engineering team will investigate the cause. We will follow up with you once we have more information."
+- Response Latency: 1435ms
+--------------------------------------------------------------------------------
+
+TEST 56
+- Request Query: "We need to add five new administrators to our workspace."
+- Executive Summary: The user is requesting to add five new administrators to their workspace.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The request involves workspace configuration changes affecting user permissions.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reaching out. We have received your request to add five new administrators to your workspace. We will review your account permissions and follow up shortly with the next steps."
+- Response Latency: 1920ms
+--------------------------------------------------------------------------------
+
+TEST 57
+- Request Query: "The customer claims they never authorized this payment."
+- Executive Summary: The customer states that a payment was never authorized.
+- Category: Billing
+- Priority: High
+- Priority Reason: Unauthorized payment claims involve financial risk and potential disputes, requiring immediate attention.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out to us regarding the payment. We take unauthorized payment claims very seriously and our Finance team will review this transaction. Could you please provide the transaction date and invoice number so we can investigate this further for you?"
+- Response Latency: 1704ms
+--------------------------------------------------------------------------------
+
+TEST 58
+- Request Query: "Can you arrange a technical onboarding session for our team?"
+- Executive Summary: The user is requesting a technical onboarding session for their team.
+- Category: Support
+- Priority: Medium
+- Priority Reason: The request is for training and enablement, which is important for long-term success but not currently blocking operations.
+- Assigned Owner: Client Success
+- Draft Response:
+    "Thank you for your request regarding technical onboarding. I would be happy to help coordinate this session for your team; could you please provide a few preferred dates and times, as well as the specific topics or features you would like us to focus on?"
+- Response Latency: 4438ms
+--------------------------------------------------------------------------------
+
+TEST 59
+- Request Query: "The search function returns no results even when matching records exist."
+- Executive Summary: The customer is reporting that the search functionality is failing to return existing records.
+- Category: Technical
+- Priority: High
+- Priority Reason: Core system functionality is currently impaired, preventing the user from retrieving existing data.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for bringing this to our attention. We are investigating the issue with the search function and will provide an update as soon as we have more information. Could you please provide specific examples or search terms that are failing so our team can replicate the issue?"
+- Response Latency: 3766ms
+--------------------------------------------------------------------------------
+
+TEST 60
+- Request Query: "We are evaluating your platform for a government project."
+- Executive Summary: A potential new client is currently evaluating our platform for a government project.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: New business inquiry for a government contract requires timely engagement for discovery and assessment.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out to us regarding your interest in our platform for your government project. We would be happy to assist with your evaluation; could you please provide some additional details regarding your specific requirements or project scope so that we can connect you with the appropriate member of our team?"
+- Response Latency: 12906ms
+--------------------------------------------------------------------------------
+
+TEST 61
+- Request Query: "The account settings page is not saving changes."
+- Executive Summary: The user reports that the account settings page is not saving changes.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The issue impacts core functionality (account settings) for the user, but no complete system outage or urgent financial loss was reported.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We have received your report regarding the account settings page not saving changes. Our engineering team will investigate this issue, and we will follow up with you as soon as we have more information or need further clarification."
+- Response Latency: 2875ms
+--------------------------------------------------------------------------------
+
+TEST 62
+- Request Query: "Our subscription renewal failed, but the card is valid."
+- Executive Summary: The customer reports that their subscription renewal failed despite using a valid credit card.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Renewal failure impacts account status and billing continuity, but no complete system outage is reported.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out regarding your subscription renewal. We have received your report that the renewal failed despite a valid card, and our finance team will look into this issue and follow up with you soon."
+- Response Latency: 1596ms
+--------------------------------------------------------------------------------
+
+TEST 63
+- Request Query: "We want to know whether your platform supports SSO."
+- Executive Summary: The customer is inquiring about whether the platform supports Single Sign-On (SSO).
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The request is a standard pre-sales or technical inquiry regarding platform features without any reported system outage or emergency.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reaching out with your question regarding Single Sign-On (SSO). We have received your inquiry and will provide you with the relevant technical documentation regarding our SSO capabilities shortly."
+- Response Latency: 1295ms
+--------------------------------------------------------------------------------
+
+TEST 64
+- Request Query: "The application became extremely slow after we imported a large dataset."
+- Executive Summary: The user reports that the application performance became extremely slow following the import of a large dataset.
+- Category: Technical
+- Priority: High
+- Priority Reason: Performance degradation impacts application usability for the user after a specific action.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out regarding the application performance issue after your dataset import. We have received your request and our technical team will investigate the cause of the slowness. We will follow up with you as soon as we have more information or need further details."
+- Response Latency: 1360ms
+--------------------------------------------------------------------------------
+
+TEST 65
+- Request Query: "Please connect us with someone who can discuss reseller opportunities."
+- Executive Summary: The requester is asking to connect with a representative to discuss potential reseller opportunities.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request is a standard business inquiry regarding potential partnerships without any indication of immediate financial or operational emergency.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Hello, thank you for your interest in reseller opportunities. We have received your inquiry and a member of our Sales Team will reach out to you shortly to discuss potential partnership options."
+- Response Latency: 1348ms
+--------------------------------------------------------------------------------
+
+TEST 66
+- Request Query: "A user is unable to receive the two-factor authentication code."
+- Executive Summary: A user is unable to receive their two-factor authentication code.
+- Category: Technical
+- Priority: High
+- Priority Reason: Inability to receive a two-factor authentication code completely blocks user login and access to the system.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out regarding the issue with receiving your two-factor authentication code. We understand this prevents you from accessing your account, and our engineering team will investigate the cause. We will follow up with you as soon as we have more information or need further details."
+- Response Latency: 1516ms
+--------------------------------------------------------------------------------
+
+TEST 67
+- Request Query: "We need a copy of all invoices issued during the previous financial year."
+- Executive Summary: The requester is asking for copies of all invoices issued during the previous financial year.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: The request is for historical financial documents without an explicit emergency or system outage indication.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for reaching out to the Finance team. We have received your request for copies of all invoices issued during the previous financial year and will review our records to assist you. We will follow up shortly with the requested information or to ask for any necessary clarification."
+- Response Latency: 1885ms
+--------------------------------------------------------------------------------
+
+TEST 68
+- Request Query: "The platform is showing incorrect data in the analytics dashboard."
+- Executive Summary: The user is reporting that the analytics dashboard is displaying incorrect data.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: The request reports an active system data issue affecting usability, but does not indicate a complete platform outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out to us. We have received your report regarding incorrect data in the analytics dashboard and are routing this to our engineering team to investigate further. Could you please provide any additional details, such as specific metrics or screenshots, to help us look into this?"
+- Response Latency: 1891ms
+--------------------------------------------------------------------------------
+
+TEST 69
+- Request Query: "Can you provide a trial account for our evaluation team?"
+- Executive Summary: The requester is asking for a trial account for their evaluation team.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request is a standard sales inquiry for evaluation purposes without any indicated operational outage or emergency.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Hello, thank you for your interest in evaluating our services. We would be happy to discuss setting up a trial account for your evaluation team. Could you please provide some additional details about your team and your specific requirements so we can assist you further?"
+- Response Latency: 1428ms
+--------------------------------------------------------------------------------
+
+TEST 70
+- Request Query: "The integration stopped working after we rotated our API credentials."
+- Executive Summary: The user reports that their integration stopped working following a rotation of their API credentials.
+- Category: Technical
+- Priority: High
+- Priority Reason: An integration has completely stopped working, which directly impacts core system functionality.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out. We received your report that the integration stopped working after rotating your API credentials. Our engineering team will review this issue and follow up with you shortly."
+- Response Latency: 1233ms
+--------------------------------------------------------------------------------
+
+TEST 71
+- Request Query: "We need to change the billing cycle from monthly to annual."
+- Executive Summary: The customer is requesting a change to their billing cycle from monthly to annual.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Account modification request that impacts billing terms but does not indicate a system outage or urgent failure.
+- Assigned Owner: Finance
+- Draft Response:
+    "Hello, thank you for contacting us regarding your billing cycle. We have received your request to change your billing from monthly to annual and our finance team will review it and follow up with the next steps soon."
+- Response Latency: 1430ms
+--------------------------------------------------------------------------------
+
+TEST 72
+- Request Query: "Our entire department is receiving permission-denied errors."
+- Executive Summary: The user reports that their entire department is experiencing permission-denied errors.
+- Category: Technical
+- Priority: High
+- Priority Reason: An entire department is impacted by access errors, indicating a widespread blockage to daily operations.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out to us. We have received your report regarding the permission-denied errors affecting your department. Our technical team is looking into the issue, and we will follow up with you as soon as we have more information or require further clarification."
+- Response Latency: 1515ms
+--------------------------------------------------------------------------------
+
+TEST 73
+- Request Query: "The customer is asking whether a discount is available for an annual contract."
+- Executive Summary: The customer is inquiring about potential discounts available for an annual contract.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Inquiry involves standard sales and contract pricing discussions without an urgent system failure.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out regarding our annual contracts. A member of our Sales Team will review your inquiry and follow up with you soon to discuss available pricing options."
+- Response Latency: 1989ms
+--------------------------------------------------------------------------------
+
+TEST 74
+- Request Query: "The CSV import completes successfully, but some records are missing."
+- Executive Summary: The user reports that CSV imports complete successfully, but some records are missing from the result.
+- Category: Technical
+- Priority: Medium
+- Priority Reason: Data loss or incomplete import affects functionality but does not cause a total system outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reaching out to Technical Support. We have received your report regarding the CSV import completing with missing records. Our engineering team will investigate the issue and follow up with you as soon as we have more information or require further details."
+- Response Latency: 1677ms
+--------------------------------------------------------------------------------
+
+TEST 75
+- Request Query: "We would like to explore a co-selling partnership with your company."
+- Executive Summary: An external party is inquiring about establishing a co-selling partnership.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: Partnership inquiries represent potential business opportunities but do not indicate an active system outage or critical issue.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out to explore a co-selling partnership. We have received your inquiry and a member of our sales team will review your proposal and follow up with you soon."
+- Response Latency: 1352ms
+--------------------------------------------------------------------------------
+
+TEST 76
+- Request Query: "The invoice total does not match the amount shown during checkout."
+- Executive Summary: The user reports that the invoice total does not match the amount shown during checkout.
+- Category: Billing
+- Priority: Medium
+- Priority Reason: Discrepancies in billing require investigation but do not represent a complete system outage.
+- Assigned Owner: Finance
+- Draft Response:
+    "Thank you for contacting us regarding the invoice total discrepancy. We have received your request and our Finance team will review your checkout details and invoice to investigate the issue. We will follow up with you shortly."
+- Response Latency: 1342ms
+--------------------------------------------------------------------------------
+
+TEST 77
+- Request Query: "The application crashes only when users access it from Safari."
+- Executive Summary: Users are experiencing application crashes exclusively when accessing the platform through the Safari browser.
+- Category: Technical
+- Priority: High
+- Priority Reason: Application crashes represent a critical functional failure impacting user accessibility for a specific platform.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reporting this issue. We have escalated your report to our engineering team to investigate why the application is crashing specifically on Safari. Could you please provide your specific iOS or macOS version and any error logs you may have received?"
+- Response Latency: 4251ms
+--------------------------------------------------------------------------------
+
+TEST 78
+- Request Query: "Please explain how to configure webhooks for our account."
+- Executive Summary: The user is requesting documentation or instructions on how to configure webhooks for their account.
+- Category: Technical
+- Priority: Low
+- Priority Reason: This is a general inquiry for information and does not indicate an active service outage or critical business impact.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Thank you for reaching out. I would be happy to help you with the webhook configuration. Could you please let me know which specific integration or platform you are looking to connect? In the meantime, I am gathering the relevant documentation to assist you with the setup process."
+- Response Latency: 2738ms
+--------------------------------------------------------------------------------
+
+TEST 79
+- Request Query: "We need immediate assistance because our production environment is unavailable."
+- Executive Summary: The user reported that their production environment is currently unavailable and requires immediate assistance.
+- Category: Technical
+- Priority: Urgent
+- Priority Reason: The request explicitly states that the production environment is unavailable, representing a critical operational outage.
+- Assigned Owner: Engineering
+- Draft Response:
+    "Hello, thank you for reaching out to us. We understand that your production environment is currently unavailable, and our Engineering team has been notified to investigate this critical issue. We will follow up with you as soon as we have more information or require further clarification."
+- Response Latency: 1568ms
+--------------------------------------------------------------------------------
+
+TEST 80
+- Request Query: "Our company is interested in purchasing additional seats for the existing contract."
+- Executive Summary: The user is requesting to purchase additional seats for their existing contract.
+- Category: Sales
+- Priority: Medium
+- Priority Reason: The request involves a potential contract expansion and sales opportunity, which warrants timely attention.
+- Assigned Owner: Sales Team
+- Draft Response:
+    "Thank you for reaching out regarding the purchase of additional seats for your contract. A member of the Sales Team will review your account details and follow up with you shortly to discuss options and next steps."
+- Response Latency: 1250ms
+--------------------------------------------------------------------------------
+

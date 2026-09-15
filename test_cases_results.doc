@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AI Request Triage Assistant - Test Results</title>
+<style>
+  body { font-family: Calibri, Arial, sans-serif; margin: 40px; color: #222; line-height: 1.5; }
+  h1 { color: #1a365d; border-bottom: 2px solid #2b6cb0; padding-bottom: 8px; }
+  h2 { color: #2b6cb0; margin-top: 30px; }
+  .test-card { border: 1px solid #cbd5e0; background: #f7fafc; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
+  .query { font-size: 15px; font-weight: bold; color: #2d3748; background: #edf2f7; padding: 10px; border-left: 4px solid #3182ce; margin-bottom: 12px; }
+  .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .meta-table td { padding: 6px 12px; border: 1px solid #e2e8f0; font-size: 14px; }
+  .meta-label { font-weight: bold; background: #edf2f7; width: 160px; color: #4a5568; }
+  .draft-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 12px; border-radius: 6px; font-style: italic; color: #2d3748; }
+  .badge { font-weight: bold; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+  .badge-urgent { background: #fed7d7; color: #9b2c2c; }
+  .badge-high { background: #feebc8; color: #7b341e; }
+  .badge-medium { background: #bee3f8; color: #2c5282; }
+  .badge-low { background: #e2e8f0; color: #4a5568; }
+</style>
+</head>
+<body>
+<h1>AI Request Triage Assistant — Test Cases Evaluation Report</h1>
+<p><strong>Test Range:</strong> Test 26 to Test 80 (55 Test Cases)<br>
+<strong>Execution Timestamp:</strong> 15/9/2026, 6:07:35 pm<br>
+<strong>Environment:</strong> Localhost (http://localhost:3000)<br>
+<strong>AI Provider:</strong> Google Gemini (Flash-Lite with Multi-Key Fallback)</p>
+
+<h2>Summary Table</h2>
+<table style="width:100%; border-collapse: collapse; margin-bottom: 30px;" border="1" cellpadding="6">
+  <tr style="background:#2b6cb0; color:white;">
+    <th>Test ID</th>
+    <th>Request Query</th>
+    <th>Category</th>
+    <th>Priority</th>
+    <th>Assigned Owner</th>
+  </tr>
+
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 26</td>
+    <td>Our customer wants to change the billing address on their account.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 27</td>
+    <td>The payment gateway is rejecting every transaction since this morning.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Urgent</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 28</td>
+    <td>A user forgot their password and cannot complete the reset process.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 29</td>
+    <td>We need a quotation for 200 enterprise licenses.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 30</td>
+    <td>The dashboard takes more than 30 seconds to load.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 31</td>
+    <td>Please explain the differences between your Basic and Enterprise plans.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 32</td>
+    <td>We were charged for a subscription after cancelling it.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 33</td>
+    <td>Our team needs help understanding how to configure the API.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 34</td>
+    <td>The application is showing a blank screen after the latest deployment.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 35</td>
+    <td>A customer is requesting a refund for an accidental purchase.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 36</td>
+    <td>We want to schedule a product demo for next week.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 37</td>
+    <td>The monthly invoice contains incorrect usage numbers.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 38</td>
+    <td>Several employees cannot access the platform because their accounts are locked.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 39</td>
+    <td>Can you provide documentation for integrating your service with Slack?</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Low</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 40</td>
+    <td>We are interested in becoming a technology partner.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 41</td>
+    <td>The mobile application closes whenever we open the reports section.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 42</td>
+    <td>Our organization needs an urgent update to the company billing details.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Urgent</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 43</td>
+    <td>Please send information about your available enterprise security features.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 44</td>
+    <td>The export file is missing several records.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 45</td>
+    <td>We would like to discuss a joint marketing campaign.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Low</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 46</td>
+    <td>The service is completely unavailable for all users in our organization.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Urgent</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 47</td>
+    <td>A customer says their invoice was paid, but the account still shows an unpaid balance.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 48</td>
+    <td>We need help understanding the steps required to invite new team members.</td>
+    <td style="text-align:center;">Support</td>
+    <td style="text-align:center;">Low</td>
+    <td style="text-align:center;">Client Success</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 49</td>
+    <td>The API returns a 500 error when we upload a CSV file.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 50</td>
+    <td>Can someone from your sales team contact us about a large-volume contract?</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 51</td>
+    <td>The customer portal is displaying outdated account information.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 52</td>
+    <td>We need to update the bank account used for subscription payments.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 53</td>
+    <td>Our users are receiving an error when downloading PDF invoices.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 54</td>
+    <td>Please share the pricing for your API usage.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 55</td>
+    <td>The system is sending the same notification multiple times.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 56</td>
+    <td>We need to add five new administrators to our workspace.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 57</td>
+    <td>The customer claims they never authorized this payment.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 58</td>
+    <td>Can you arrange a technical onboarding session for our team?</td>
+    <td style="text-align:center;">Support</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Client Success</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 59</td>
+    <td>The search function returns no results even when matching records exist.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 60</td>
+    <td>We are evaluating your platform for a government project.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 61</td>
+    <td>The account settings page is not saving changes.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 62</td>
+    <td>Our subscription renewal failed, but the card is valid.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 63</td>
+    <td>We want to know whether your platform supports SSO.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 64</td>
+    <td>The application became extremely slow after we imported a large dataset.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 65</td>
+    <td>Please connect us with someone who can discuss reseller opportunities.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 66</td>
+    <td>A user is unable to receive the two-factor authentication code.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 67</td>
+    <td>We need a copy of all invoices issued during the previous financial year.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 68</td>
+    <td>The platform is showing incorrect data in the analytics dashboard.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 69</td>
+    <td>Can you provide a trial account for our evaluation team?</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 70</td>
+    <td>The integration stopped working after we rotated our API credentials.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 71</td>
+    <td>We need to change the billing cycle from monthly to annual.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 72</td>
+    <td>Our entire department is receiving permission-denied errors.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 73</td>
+    <td>The customer is asking whether a discount is available for an annual contract.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 74</td>
+    <td>The CSV import completes successfully, but some records are missing.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 75</td>
+    <td>We would like to explore a co-selling partnership with your company.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 76</td>
+    <td>The invoice total does not match the amount shown during checkout.</td>
+    <td style="text-align:center;">Billing</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Finance</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 77</td>
+    <td>The application crashes only when users access it from Safari.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">High</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 78</td>
+    <td>Please explain how to configure webhooks for our account.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Low</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 79</td>
+    <td>We need immediate assistance because our production environment is unavailable.</td>
+    <td style="text-align:center;">Technical</td>
+    <td style="text-align:center;">Urgent</td>
+    <td style="text-align:center;">Engineering</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; font-weight:bold;">Test 80</td>
+    <td>Our company is interested in purchasing additional seats for the existing contract.</td>
+    <td style="text-align:center;">Sales</td>
+    <td style="text-align:center;">Medium</td>
+    <td style="text-align:center;">Sales Team</td>
+  </tr></table>
+<h2>Detailed Test Cases & Generated Responses</h2>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 26</div>
+  <div class="query">"Our customer wants to change the billing address on their account."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1987 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A customer is requesting to update the billing address on their account.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Account maintenance requests like updating a billing address are standard operational tasks that do not cause immediate system outages.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to update your billing address. We have received your request and our Finance team will review the details to update your account shortly. If you can provide the new billing address and any necessary account details, that will help us process your request faster."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 27</div>
+  <div class="query">"The payment gateway is rejecting every transaction since this morning."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-urgent">Urgent</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1655 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The payment gateway is rejecting all transactions since this morning.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">All transactions are currently failing, completely halting payment processing.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding the payment gateway rejecting transactions since this morning. Our engineering team is looking into the issue and we will provide an update as soon as possible."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 28</div>
+  <div class="query">"A user forgot their password and cannot complete the reset process."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1652 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A user is unable to complete the password reset process after forgetting their password.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The user is blocked from accessing their account due to a password reset failure.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding your password reset issue. We have received your request and our technical team will review the details to help you regain access to your account."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 29</div>
+  <div class="query">"We need a quotation for 200 enterprise licenses."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1560 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is requesting a quotation for 200 enterprise licenses.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves a potential volume sale of 200 enterprise licenses, which represents a standard sales inquiry.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in our enterprise licenses. We have received your request for a quotation for 200 licenses and our Sales Team will review your requirements and follow up with you shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 30</div>
+  <div class="query">"The dashboard takes more than 30 seconds to load."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1471 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the dashboard takes more than 30 seconds to load.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Performance issue impacting usability without complete system outage or data loss reported.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding the slow dashboard loading time of over 30 seconds. Our engineering team will investigate this performance issue and follow up with you as soon as more information is available."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 31</div>
+  <div class="query">"Please explain the differences between your Basic and Enterprise plans."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1350 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting an explanation of the differences between the Basic and Enterprise plans.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Inquiry is a standard pre-sales product comparison without reported system outages or critical blockers.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in our plans. A member of our Sales Team will review your inquiry and provide a detailed comparison between our Basic and Enterprise plans."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 32</div>
+  <div class="query">"We were charged for a subscription after cancelling it."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1457 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer reports being charged for a subscription after having previously cancelled it.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The customer experienced an unexpected charge following a cancellation, requiring immediate financial review.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding the unexpected charge on your account after cancellation. We are reviewing your billing details and will investigate this transaction, and we will follow up with you shortly regarding the next steps."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 33</div>
+  <div class="query">"Our team needs help understanding how to configure the API."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1418 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting assistance with understanding how to configure the API.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves technical configuration guidance for the API without indicating a complete outage or critical operational failure.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello. Thank you for reaching out to us. We received your request for help with configuring the API. A member of our engineering team will review your inquiry and follow up with you soon to assist you with the setup process."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 34</div>
+  <div class="query">"The application is showing a blank screen after the latest deployment."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1354 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The application is displaying a blank screen following the most recent deployment.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">A blank screen after deployment indicates a critical system availability issue affecting application usability.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reporting this issue. We have received your report regarding the blank screen following the latest deployment, and our engineering team is investigating. We will provide updates as more information becomes available."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 35</div>
+  <div class="query">"A customer is requesting a refund for an accidental purchase."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1289 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A customer is requesting a refund for an accidental purchase.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves financial transactions and a refund, which requires standard billing review.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for contacting us. We have received your request regarding a refund for an accidental purchase, and our Finance team will review the transaction details and follow up with you regarding the next steps."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 36</div>
+  <div class="query">"We want to schedule a product demo for next week."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1525 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is requesting to schedule a product demo for next week.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Standard prospective customer request with a moderate timeline of next week.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in our product. We would be happy to schedule a product demo for you next week. Please let us know your preferred days and times so we can coordinate the details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 37</div>
+  <div class="query">"The monthly invoice contains incorrect usage numbers."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1582 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer reported that their monthly invoice contains incorrect usage numbers.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Incorrect billing details impact financial accuracy and require review.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for contacting us regarding your monthly invoice. We have received your report about the incorrect usage numbers and our Finance team will review your account details and follow up with you."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 38</div>
+  <div class="query">"Several employees cannot access the platform because their accounts are locked."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1690 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">Multiple employees are unable to access the platform due to locked accounts.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Multiple users are completely blocked from accessing the platform, impacting their work.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding the account lockouts affecting multiple employees. Our team is looking into the access issue and will follow up with next steps shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 39</div>
+  <div class="query">"Can you provide documentation for integrating your service with Slack?"</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1593 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting documentation for integrating the service with Slack.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a standard inquiry for integration documentation with no reported system outage or urgency indicators.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for contacting us. We have received your request for Slack integration documentation and will provide the relevant guides for your review shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 40</div>
+  <div class="query">"We are interested in becoming a technology partner."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1514 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">An external party is expressing interest in establishing a technology partnership.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Inquiry represents a potential business growth opportunity requiring standard sales or partnership evaluation.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in becoming a technology partner. We have received your inquiry and a member of our team will review it and reach out to discuss potential next steps."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 41</div>
+  <div class="query">"The mobile application closes whenever we open the reports section."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1513 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The mobile application crashes or closes unexpectedly when attempting to open the reports section.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Application crashes directly impede core functionality for the user.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding the issue with the mobile application closing when opening the reports section. Our engineering team has been notified to investigate this technical behavior, and we will follow up with you as soon as we have more information or require further details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 42</div>
+  <div class="query">"Our organization needs an urgent update to the company billing details."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-urgent">Urgent</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1355 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is requesting an urgent update to their company billing details.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The requester explicitly stated that the update to company billing details is urgent.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us regarding your billing details. We have received your urgent request and our Finance team will review the necessary updates. Could you please provide the specific billing details that need to be changed so we can proceed safely?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 43</div>
+  <div class="query">"Please send information about your available enterprise security features."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1200 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting information regarding available enterprise security features.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a standard inquiry about enterprise features without indicating an active system outage or critical emergency.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in our enterprise security features. A member of our Sales Team will reach out to provide you with the requested information."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 44</div>
+  <div class="query">"The export file is missing several records."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1354 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the export file is missing several records.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Data is missing from an export file, which impacts data integrity but does not represent a complete system outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding missing records in the export file. Our technical team will investigate this issue and we will follow up with you as soon as more information is available."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 45</div>
+  <div class="query">"We would like to discuss a joint marketing campaign."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1499 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The requester wants to discuss a joint marketing campaign.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a general inquiry about a potential partnership without any stated time sensitivity or critical business disruption.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out regarding a potential joint marketing campaign. We have received your inquiry and a member of our team will contact you to discuss this further."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 46</div>
+  <div class="query">"The service is completely unavailable for all users in our organization."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-urgent">Urgent</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1260 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the service is completely unavailable for all users within their organization.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Complete service unavailability affecting all users in the organization.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello. We have received your report regarding the complete service unavailability for your organization. Our engineering team is looking into the issue, and we will follow up as soon as we have more information or require further clarification."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 47</div>
+  <div class="query">"A customer says their invoice was paid, but the account still shows an unpaid balance."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1514 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A customer reports that their invoice shows as unpaid despite having already made the payment.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves a payment discrepancy affecting the customer's account status, requiring financial investigation.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding your account balance. We are looking into the payment status of your invoice and will follow up with you shortly to resolve this discrepancy."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 48</div>
+  <div class="query">"We need help understanding the steps required to invite new team members."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Support</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Client Success</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1579 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting guidance and steps on how to invite new team members to the platform.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is for general informational assistance with no reported system outage or urgent financial impact.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us. We would be happy to help you understand the steps required to invite new team members. Could you please provide a bit more context on your current setup so we can guide you through the process?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 49</div>
+  <div class="query">"The API returns a 500 error when we upload a CSV file."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1707 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is experiencing a 500 internal server error when attempting to upload a CSV file via the API.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">A 500 error on a core data upload function indicates a significant service disruption that blocks functionality.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding the 500 error during CSV file uploads via the API. Our engineering team is looking into this issue, and we will follow up with you as soon as we have more information or need further details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 50</div>
+  <div class="query">"Can someone from your sales team contact us about a large-volume contract?"</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1535 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The requester is asking for a sales team representative to contact them regarding a large-volume contract.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves a potential large-volume contract which is a standard sales opportunity requiring follow-up.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out to us regarding a large-volume contract. A member of our Sales Team has received your request and will contact you soon to discuss your needs."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 51</div>
+  <div class="query">"The customer portal is displaying outdated account information."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1490 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer portal is displaying outdated account information.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Account data discrepancy in the portal affects user experience but does not indicate a total system outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to inform us that the customer portal is displaying outdated account information. Our technical team has been notified to investigate the data sync issue, and we will follow up with you as soon as more information is available."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 52</div>
+  <div class="query">"We need to update the bank account used for subscription payments."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1385 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is requesting an update to the bank account information associated with their subscription payments.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Account update requests are important for ongoing subscription management but do not indicate an immediate service outage or emergency.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding your subscription payments. We have received your request to update your bank account information and our finance team will follow up with you shortly regarding the next steps."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 53</div>
+  <div class="query">"Our users are receiving an error when downloading PDF invoices."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1315 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">Users are encountering an error when attempting to download PDF invoices.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The issue impacts core user functionality related to invoices.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to report this issue with downloading PDF invoices. We are reviewing the error and will investigate the technical cause to provide an update soon."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 54</div>
+  <div class="query">"Please share the pricing for your API usage."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1723 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting pricing information for API usage.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Inquiry is a standard sales request for pricing information without reported outages or critical system failures.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your interest in our API. We have received your request for pricing information and a member of our Sales Team will reach out to you shortly with the relevant details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 55</div>
+  <div class="query">"The system is sending the same notification multiple times."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1435 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports an issue where the system is repeatedly sending duplicate notifications.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The issue involves system malfunction affecting normal notifications, but does not indicate a complete outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding duplicate system notifications and our engineering team will investigate the cause. We will follow up with you once we have more information."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 56</div>
+  <div class="query">"We need to add five new administrators to our workspace."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1920 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting to add five new administrators to their workspace.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves workspace configuration changes affecting user permissions.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out. We have received your request to add five new administrators to your workspace. We will review your account permissions and follow up shortly with the next steps."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 57</div>
+  <div class="query">"The customer claims they never authorized this payment."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1704 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer states that a payment was never authorized.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Unauthorized payment claims involve financial risk and potential disputes, requiring immediate attention.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us regarding the payment. We take unauthorized payment claims very seriously and our Finance team will review this transaction. Could you please provide the transaction date and invoice number so we can investigate this further for you?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 58</div>
+  <div class="query">"Can you arrange a technical onboarding session for our team?"</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Support</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Client Success</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>4438 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting a technical onboarding session for their team.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is for training and enablement, which is important for long-term success but not currently blocking operations.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for your request regarding technical onboarding. I would be happy to help coordinate this session for your team; could you please provide a few preferred dates and times, as well as the specific topics or features you would like us to focus on?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 59</div>
+  <div class="query">"The search function returns no results even when matching records exist."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>3766 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is reporting that the search functionality is failing to return existing records.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Core system functionality is currently impaired, preventing the user from retrieving existing data.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for bringing this to our attention. We are investigating the issue with the search function and will provide an update as soon as we have more information. Could you please provide specific examples or search terms that are failing so our team can replicate the issue?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 60</div>
+  <div class="query">"We are evaluating your platform for a government project."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>12906 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A potential new client is currently evaluating our platform for a government project.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">New business inquiry for a government contract requires timely engagement for discovery and assessment.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out to us regarding your interest in our platform for your government project. We would be happy to assist with your evaluation; could you please provide some additional details regarding your specific requirements or project scope so that we can connect you with the appropriate member of our team?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 61</div>
+  <div class="query">"The account settings page is not saving changes."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>2875 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the account settings page is not saving changes.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The issue impacts core functionality (account settings) for the user, but no complete system outage or urgent financial loss was reported.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We have received your report regarding the account settings page not saving changes. Our engineering team will investigate this issue, and we will follow up with you as soon as we have more information or need further clarification."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 62</div>
+  <div class="query">"Our subscription renewal failed, but the card is valid."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1596 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer reports that their subscription renewal failed despite using a valid credit card.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Renewal failure impacts account status and billing continuity, but no complete system outage is reported.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding your subscription renewal. We have received your report that the renewal failed despite a valid card, and our finance team will look into this issue and follow up with you soon."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 63</div>
+  <div class="query">"We want to know whether your platform supports SSO."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1295 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is inquiring about whether the platform supports Single Sign-On (SSO).</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a standard pre-sales or technical inquiry regarding platform features without any reported system outage or emergency.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out with your question regarding Single Sign-On (SSO). We have received your inquiry and will provide you with the relevant technical documentation regarding our SSO capabilities shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 64</div>
+  <div class="query">"The application became extremely slow after we imported a large dataset."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1360 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the application performance became extremely slow following the import of a large dataset.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Performance degradation impacts application usability for the user after a specific action.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding the application performance issue after your dataset import. We have received your request and our technical team will investigate the cause of the slowness. We will follow up with you as soon as we have more information or need further details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 65</div>
+  <div class="query">"Please connect us with someone who can discuss reseller opportunities."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1348 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The requester is asking to connect with a representative to discuss potential reseller opportunities.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a standard business inquiry regarding potential partnerships without any indication of immediate financial or operational emergency.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for your interest in reseller opportunities. We have received your inquiry and a member of our Sales Team will reach out to you shortly to discuss potential partnership options."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 66</div>
+  <div class="query">"A user is unable to receive the two-factor authentication code."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1516 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">A user is unable to receive their two-factor authentication code.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Inability to receive a two-factor authentication code completely blocks user login and access to the system.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out regarding the issue with receiving your two-factor authentication code. We understand this prevents you from accessing your account, and our engineering team will investigate the cause. We will follow up with you as soon as we have more information or need further details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 67</div>
+  <div class="query">"We need a copy of all invoices issued during the previous financial year."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1885 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The requester is asking for copies of all invoices issued during the previous financial year.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is for historical financial documents without an explicit emergency or system outage indication.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to the Finance team. We have received your request for copies of all invoices issued during the previous financial year and will review our records to assist you. We will follow up shortly with the requested information or to ask for any necessary clarification."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 68</div>
+  <div class="query">"The platform is showing incorrect data in the analytics dashboard."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1891 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is reporting that the analytics dashboard is displaying incorrect data.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request reports an active system data issue affecting usability, but does not indicate a complete platform outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us. We have received your report regarding incorrect data in the analytics dashboard and are routing this to our engineering team to investigate further. Could you please provide any additional details, such as specific metrics or screenshots, to help us look into this?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 69</div>
+  <div class="query">"Can you provide a trial account for our evaluation team?"</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1428 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The requester is asking for a trial account for their evaluation team.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request is a standard sales inquiry for evaluation purposes without any indicated operational outage or emergency.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for your interest in evaluating our services. We would be happy to discuss setting up a trial account for your evaluation team. Could you please provide some additional details about your team and your specific requirements so we can assist you further?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 70</div>
+  <div class="query">"The integration stopped working after we rotated our API credentials."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1233 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that their integration stopped working following a rotation of their API credentials.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">An integration has completely stopped working, which directly impacts core system functionality.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out. We received your report that the integration stopped working after rotating your API credentials. Our engineering team will review this issue and follow up with you shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 71</div>
+  <div class="query">"We need to change the billing cycle from monthly to annual."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1430 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is requesting a change to their billing cycle from monthly to annual.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Account modification request that impacts billing terms but does not indicate a system outage or urgent failure.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for contacting us regarding your billing cycle. We have received your request to change your billing from monthly to annual and our finance team will review it and follow up with the next steps soon."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 72</div>
+  <div class="query">"Our entire department is receiving permission-denied errors."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1515 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that their entire department is experiencing permission-denied errors.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">An entire department is impacted by access errors, indicating a widespread blockage to daily operations.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us. We have received your report regarding the permission-denied errors affecting your department. Our technical team is looking into the issue, and we will follow up with you as soon as we have more information or require further clarification."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 73</div>
+  <div class="query">"The customer is asking whether a discount is available for an annual contract."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1989 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The customer is inquiring about potential discounts available for an annual contract.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Inquiry involves standard sales and contract pricing discussions without an urgent system failure.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out regarding our annual contracts. A member of our Sales Team will review your inquiry and follow up with you soon to discuss available pricing options."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 74</div>
+  <div class="query">"The CSV import completes successfully, but some records are missing."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1677 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that CSV imports complete successfully, but some records are missing from the result.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Data loss or incomplete import affects functionality but does not cause a total system outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out to Technical Support. We have received your report regarding the CSV import completing with missing records. Our engineering team will investigate the issue and follow up with you as soon as we have more information or require further details."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 75</div>
+  <div class="query">"We would like to explore a co-selling partnership with your company."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1352 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">An external party is inquiring about establishing a co-selling partnership.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Partnership inquiries represent potential business opportunities but do not indicate an active system outage or critical issue.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out to explore a co-selling partnership. We have received your inquiry and a member of our sales team will review your proposal and follow up with you soon."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 76</div>
+  <div class="query">"The invoice total does not match the amount shown during checkout."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Billing</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Finance</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1342 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reports that the invoice total does not match the amount shown during checkout.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Discrepancies in billing require investigation but do not represent a complete system outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for contacting us regarding the invoice total discrepancy. We have received your request and our Finance team will review your checkout details and invoice to investigate the issue. We will follow up with you shortly."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 77</div>
+  <div class="query">"The application crashes only when users access it from Safari."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>4251 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">Users are experiencing application crashes exclusively when accessing the platform through the Safari browser.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">Application crashes represent a critical functional failure impacting user accessibility for a specific platform.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reporting this issue. We have escalated your report to our engineering team to investigate why the application is crashing specifically on Safari. Could you please provide your specific iOS or macOS version and any error logs you may have received?"</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 78</div>
+  <div class="query">"Please explain how to configure webhooks for our account."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>2738 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting documentation or instructions on how to configure webhooks for their account.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">This is a general inquiry for information and does not indicate an active service outage or critical business impact.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out. I would be happy to help you with the webhook configuration. Could you please let me know which specific integration or platform you are looking to connect? In the meantime, I am gathering the relevant documentation to assist you with the setup process."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 79</div>
+  <div class="query">"We need immediate assistance because our production environment is unavailable."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Technical</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Engineering</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-urgent">Urgent</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1568 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user reported that their production environment is currently unavailable and requires immediate assistance.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request explicitly states that the production environment is unavailable, representing a critical operational outage.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Hello, thank you for reaching out to us. We understand that your production environment is currently unavailable, and our Engineering team has been notified to investigate this critical issue. We will follow up with you as soon as we have more information or require further clarification."</div>
+</div>
+
+<div class="test-card">
+  <div style="font-weight:bold; color:#2b6cb0; font-size:16px; margin-bottom:6px;">Test Case 80</div>
+  <div class="query">"Our company is interested in purchasing additional seats for the existing contract."</div>
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">Category</td>
+      <td><strong>Sales</strong></td>
+      <td class="meta-label">Recommended Owner</td>
+      <td><strong>Sales Team</strong></td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td class="meta-label">Response Time</td>
+      <td>1250 ms</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Executive Summary</td>
+      <td colspan="3">The user is requesting to purchase additional seats for their existing contract.</td>
+    </tr>
+    <tr>
+      <td class="meta-label">Priority Reason</td>
+      <td colspan="3">The request involves a potential contract expansion and sales opportunity, which warrants timely attention.</td>
+    </tr>
+  </table>
+  <div style="font-weight:bold; margin-bottom:4px; font-size:13px; color:#4a5568;">Generated Reviewable Draft Response:</div>
+  <div class="draft-box">"Thank you for reaching out regarding the purchase of additional seats for your contract. A member of the Sales Team will review your account details and follow up with you shortly to discuss options and next steps."</div>
+</div>
+</body></html>

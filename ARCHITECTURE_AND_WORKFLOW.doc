@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>AI Request Triage Assistant - Architecture and Workflow</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    margin: 40px;
+    color: #1a202c;
+    line-height: 1.6;
+    background-color: #ffffff;
+  }
+  h1 {
+    color: #1e3a8a;
+    font-size: 26px;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    color: #1e40af;
+    font-size: 20px;
+    margin-top: 32px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+  }
+  h3 {
+    color: #2563eb;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  p, li {
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  th {
+    background-color: #1e40af;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 13px;
+  }
+  td {
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 13px;
+  }
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  .box {
+    border: 1px solid #cbd5e1;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .diagram-container {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border-radius: 8px;
+    padding: 18px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.45;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 18px 0;
+    border: 1px solid #334155;
+  }
+  .code-inline {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .badge-urgent { background: #fee2e2; color: #991b1b; }
+  .badge-high { background: #fef3c7; color: #92400e; }
+  .badge-medium { background: #dbeafe; color: #1e40af; }
+  .badge-low { background: #f1f5f9; color: #475569; }
+</style>
+</head>
+<body>
+
+<h1>AI Request Triage Assistant — Architecture & Workflow Specification</h1>
+
+<div class="box">
+  <strong>System Identity:</strong> AI Request Triage Assistant (Production Prototype)<br>
+  <strong>Technology Stack:</strong> Next.js 16 (App Router), React 19, TypeScript, Vanilla CSS Tokens, Zod 3, Google GenAI SDK (@google/genai)<br>
+  <strong>AI Providers:</strong> Google Gemini 3.5 Flash-Lite (Active / Cascading Failover) & Offline Mock Engine<br>
+  <strong>Last Updated:</strong> September 2026
+</div>
+
+<h2>1. Executive Architecture Overview</h2>
+<p>
+The system is built on a clean, strictly decoupled 5-tier architecture ensuring complete separation of concerns between user interaction, validation, provider orchestration, resilience failover, and data integrity contracts:
+</p>
+
+<div class="diagram-container">
++====================================================================================================+
+|                                    1. CLIENT PRESENTATION LAYER                                    |
+|  - Next.js React Client (app/page.tsx)                                                             |
+|  - Responsive Dark Mode Design Tokens (app/globals.css)                                            |
+|  - 6 One-Click Mock Scenario Injectors                                                             |
+|  - Real-Time Live Status (Idle -> Analyzing -> Success / Error)                                   |
+|  - Editable Draft Response Textarea with 1-Click Clipboard Copy                                    |
++====================================================================================================+
+                                                  |
+                                                  | POST /api/triage { request: string }
+                                                  v
++====================================================================================================+
+|                                      2. BACKEND API ROUTE LAYER                                    |
+|  - Next.js Route Handler (app/api/triage/route.ts)                                                 |
+|  - Input Validation via Zod (TriageRequestSchema: 1-4000 non-empty chars)                          |
+|  - Centralized HTTP Error Classification & Status Code Mapping                                     |
++====================================================================================================+
+                                                  |
+                                                  | Validated Request Text
+                                                  v
++====================================================================================================+
+|                                  3. CONFIGURATION & FACTORY LAYER                                  |
+|  - Server Configuration (lib/config.ts) loaded from .env.local                                     |
+|  - Factory Instantiation (lib/ai/factory.ts) returning unified AiProvider interface                |
++====================================================================================================+
+                                                  |
+                               +------------------+------------------+
+                               |                                     |
+             [AI_PROVIDER == "mock"]               [AI_PROVIDER == "gemini"]
+                               v                                     v
++=============================================+ +====================================================+
+|         4A. DETERMINISTIC MOCK ENGINE       | |          4B. GEMINI AI ENGINE & RESILIENCE         |
+|  (lib/ai/mock-provider.ts)                  | |  (lib/ai/gemini-provider.ts)                       |
+|  - Regex & Intent Pattern Matcher           | |  - Dual-Key Failover Array:                        |
+|  - Zero-latency Local Execution             | |    * Primary: GEMINI_API_KEY                       |
+|  - 100% Offline Capability                  | |    * Fallback: GEMINI_API_KEY1                     |
+|  - Guaranteed Schema Compliance             | |  - Candidate Model Cascade:                        |
+|                                             | |    [AI_MODEL -> 3.5-flash-lite -> flash-latest]    |
+|                                             | |  - Structured JSON Mode (responseSchema)           |
+|                                             | |  - Timeout Racing (AI_TIMEOUT_MS)                  |
+|                                             | |  - System Prompt & Routing Policies                |
++=============================================+ +====================================================+
+                               |                                     |
+                               +------------------+------------------+
+                                                  |
+                                                  | Raw AI JSON Output
+                                                  v
++====================================================================================================+
+|                                  5. SCHEMA VALIDATION & DATA CONTRACTS                             |
+|  - Zod Result Validator (TriageResultSchema in lib/triage/validation.ts)                          |
+|  - Strict Enum Enforcement:                                                                        |
+|    * Categories: Sales | Support | Billing | Technical | Other                                     |
+|    * Priorities: Low | Medium | High | Urgent                                                      |
+|    * Owners: Sales Team | Client Success | Finance | Engineering                                   |
++====================================================================================================+
+                                                  |
+                                                  | Validated TriageResult (HTTP 200 OK)
+                                                  v
++====================================================================================================+
+|                                        RENDERED CLIENT RESULT                                      |
+|  [Summary Card] [Category Tag] [Priority Badge + Justification] [Owner] [Editable Draft Box]       |
++====================================================================================================+
+</div>
+
+<h2>2. End-to-End Operational Workflow Steps</h2>
+
+<p>Every request submitted by a user traverses the following step-by-step lifecycle:</p>
+
+<table>
+  <tr>
+    <th style="width: 80px;">Step #</th>
+    <th style="width: 180px;">Component</th>
+    <th style="width: 200px;">Action / Operation</th>
+    <th>Operational Outcome & Edge Case Handling</th>
+  </tr>
+  <tr>
+    <td><strong>Step 1</strong></td>
+    <td>User / Web UI</td>
+    <td>Request Entry & Submission</td>
+    <td>User enters or pastes raw customer query or clicks a preset button. Clicks <em>"Analyze Request"</em>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 2</strong></td>
+    <td>React Client State</td>
+    <td>Input Lock & Loading Spinner</td>
+    <td>UI transitions state from <code>idle</code> to <code>loading</code>. Textarea and buttons are disabled; animated loader is displayed.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 3</strong></td>
+    <td>HTTP Client</td>
+    <td>POST Dispatch</td>
+    <td>Sends <code>POST /api/triage</code> with JSON payload <code>{ request: "..." }</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 4</strong></td>
+    <td>API Route Handler</td>
+    <td>Input Validation</td>
+    <td><code>TriageRequestSchema.safeParse()</code> validates payload. If empty or >4000 characters, rejects immediately with <strong>HTTP 400</strong>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 5</strong></td>
+    <td>Factory Layer</td>
+    <td>Provider Selection</td>
+    <td><code>createAiProvider()</code> reads <code>config.AI_PROVIDER</code>. Dynamically returns <code>GeminiAiProvider</code> or <code>MockAiProvider</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 6</strong></td>
+    <td>AI Provider Engine</td>
+    <td>Prompt Assembly & LLM Call</td>
+    <td>Injects user request into system prompt containing strict classification, priority, owner, and ambiguity policies. Calls <code>@google/genai</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 7</strong></td>
+    <td>Resilience Layer</td>
+    <td>Cascading Failover & Retries</td>
+    <td>If primary key encounters <strong>429 Rate Limit</strong> or <strong>503 Unavailable</strong>, automatically cascades to <code>GEMINI_API_KEY1</code> and secondary candidate models.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 8</strong></td>
+    <td>Validation Layer</td>
+    <td>Schema Conformance Gate</td>
+    <td><code>TriageResultSchema.safeParse()</code> verifies that <code>category</code>, <code>priority</code>, and <code>recommendedOwner</code> conform strictly to system enums.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 9</strong></td>
+    <td>API Route Handler</td>
+    <td>HTTP Response Generation</td>
+    <td>Returns <strong>HTTP 200 OK</strong> with JSON payload containing <code>summary</code>, <code>category</code>, <code>priority</code>, <code>priorityReason</code>, <code>recommendedOwner</code>, and <code>draftResponse</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>Step 10</strong></td>
+    <td>Web UI</td>
+    <td>Results Rendering & Interaction</td>
+    <td>UI transitions state to <code>success</code>. Renders metadata cards, colored priority badge, and populates editable draft response with 1-click clipboard copy.</td>
+  </tr>
+</table>
+
+<h2>3. Decision Routing & Policy Matrix</h2>
+
+<p>The classification policy follows deterministic intent routing rather than superficial keyword matching:</p>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Primary Intent & Scope</th>
+    <th>Standard Owner</th>
+    <th>Sample Test Query</th>
+  </tr>
+  <tr>
+    <td><strong>Support</strong></td>
+    <td>How-to guidance, account administration, configuration help, and normal product usage questions.</td>
+    <td><strong>Client Success</strong></td>
+    <td><em>"We need help adding new users to our workspace."</em></td>
+  </tr>
+  <tr>
+    <td><strong>Technical</strong></td>
+    <td>Outages, server/database errors, malfunctioning features, broken integrations, failed exports, or bugs.</td>
+    <td><strong>Engineering</strong></td>
+    <td><em>"The payment gateway is rejecting every transaction since this morning."</em></td>
+  </tr>
+  <tr>
+    <td><strong>Sales</strong></td>
+    <td>Pricing, enterprise quotations, demos, purchasing, plan upgrades, additional seat expansions.</td>
+    <td><strong>Sales Team</strong></td>
+    <td><em>"We need a quotation for 200 enterprise licenses."</em></td>
+  </tr>
+  <tr>
+    <td><strong>Billing</strong></td>
+    <td>Invoices, unexpected charges, refunds, credit cards, payment receipts, taxes, and subscriptions.</td>
+    <td><strong>Finance</strong></td>
+    <td><em>"We were charged for a subscription after cancelling it."</em></td>
+  </tr>
+  <tr>
+    <td><strong>Other</strong></td>
+    <td>General partnership inquiries, media requests, sponsorship, or general collaboration.</td>
+    <td><strong>Sales Team</strong> or <strong>Client Success</strong></td>
+    <td><em>"We are an AI startup interested in exploring a co-marketing partnership."</em></td>
+  </tr>
+</table>
+
+<h3>Priority Evaluation Framework</h3>
+<ul>
+  <li><span class="badge badge-urgent">Urgent</span> — Active security/privacy exposure, total system outage, critical access loss, or broad business operational stoppage.</li>
+  <li><span class="badge badge-high">High</span> — Multiple users affected, major core workflow blocked, or impending critical business deadline.</li>
+  <li><span class="badge badge-medium">Medium</span> — Normal operational inquiry, single user standard issue, or standard workflow question.</li>
+  <li><span class="badge badge-low">Low</span> — How-to query, general cosmetic feedback, general question, or documentation inquiry.</li>
+</ul>
+
+<h2>4. Centralized Error Classification & HTTP Status Codes</h2>
+
+<table>
+  <tr>
+    <th>Error Code</th>
+    <th>HTTP Status</th>
+    <th>Trigger Condition</th>
+    <th>User-Facing Error Message</th>
+  </tr>
+  <tr>
+    <td><code>INVALID_REQUEST</code></td>
+    <td><strong>400 Bad Request</strong></td>
+    <td>Empty input, whitespace-only, non-string, or payload exceeding 4,000 characters.</td>
+    <td><em>"Please provide a valid request description (up to 4,000 characters)."</em></td>
+  </tr>
+  <tr>
+    <td><code>OUT_OF_SCOPE</code></td>
+    <td><strong>422 Unprocessable</strong></td>
+    <td>Input is completely irrelevant to business operations (e.g. poetry, personal chatting).</td>
+    <td><em>"This request is outside the scope of business triage."</em></td>
+  </tr>
+  <tr>
+    <td><code>AI_RATE_LIMITED</code></td>
+    <td><strong>429 Too Many Requests</strong></td>
+    <td>Upstream API quota exhausted across both primary and fallback keys.</td>
+    <td><em>"AI service is currently rate limited. Please try again in a few moments."</em></td>
+  </tr>
+  <tr>
+    <td><code>AI_INVALID_OUTPUT</code></td>
+    <td><strong>502 Bad Gateway</strong></td>
+    <td>Model output failed Zod schema parsing or returned invalid JSON.</td>
+    <td><em>"AI service returned an unexpected response format. Please retry."</em></td>
+  </tr>
+  <tr>
+    <td><code>AI_SERVICE_UNAVAILABLE</code></td>
+    <td><strong>503 Service Unavailable</strong></td>
+    <td>Model capacity unavailable or connection failure.</td>
+    <td><em>"AI service is temporarily unavailable. Please try again shortly."</em></td>
+  </tr>
+  <tr>
+    <td><code>AI_TIMEOUT</code></td>
+    <td><strong>504 Gateway Timeout</strong></td>
+    <td>Execution exceeded timeout threshold (configured via <code>AI_TIMEOUT_MS</code>).</td>
+    <td><em>"The triage request timed out. Please try again."</em></td>
+  </tr>
+  <tr>
+    <td><code>INTERNAL_ERROR</code></td>
+    <td><strong>500 Internal Error</strong></td>
+    <td>Unexpected server-side runtime exception.</td>
+    <td><em>"An internal server error occurred while processing your request."</em></td>
+  </tr>
+</table>
+
+<h2>5. Security & Operational Boundaries</h2>
+<ol>
+  <li><strong>Complete Key Encapsulation:</strong> API keys (<code>GEMINI_API_KEY</code>, <code>GEMINI_API_KEY1</code>) are strictly resolved on the server side and never prefixed with <code>NEXT_PUBLIC_</code>, preventing client-side exposure.</li>
+  <li><strong>Enforced Human-in-the-Loop:</strong> The system generates an <em>editable draft response</em> for human review before sending. It does not autonomously dispatch external emails or mutate ticketing databases.</li>
+  <li><strong>Deterministic Zero-Cost Fallback:</strong> The system features a zero-dependency mock mode (<code>AI_PROVIDER=mock</code>) allowing offline testing and zero-downtime demonstration without active API keys.</li>
+</ol>
+
+</body>
+</html>
